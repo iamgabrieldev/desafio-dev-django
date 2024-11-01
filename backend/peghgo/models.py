@@ -1,66 +1,92 @@
 from django.db import models
 
-class PersonalInfo(models.Model):
-    nome = models.CharField(max_length=100, blank=False)
+class PersonalInformation(models.Model):
+    """
+    Model representing an individual's personal information.
+    """
+    name = models.CharField(max_length=100, blank=False)
     email = models.EmailField(blank=False, max_length=100)
-    data_nascimento = models.DateField()
-    cpf = models.CharField(max_length=11, unique=True)
-    celular = models.CharField(max_length=15, validators=[RegexValidator(regex=r'^\d{2} \d{5}-\d{4}$', message='Insira um número de celular válido.')])
-    
-    def __str__(self):
-        return self.nome
-    
+    date_of_birth = models.DateField()
+    social_security_number = models.CharField(max_length=11, unique=True)
+    mobile_phone = models.CharField(max_length=15, validators=[RegexValidator(regex=r'^\d{2} \d{5}-\d{4}$', message='Please enter a valid mobile phone number.')])
 
-class Contact(models.Model):
-    telefone = models.CharField(max_length=11)
-    logradouro = models.CharField(max_length=100)
-    cep = models.CharField(max_length=8)
-    
     def __str__(self):
-        return self.telefone
+        return self.name
 
-class Experience(models.Model):
-    empresa = models.CharField(max_length=100)
-    funcao = models.CharField(max_length=100)
-    inicio_data = models.DateField()
-    fim_data = models.DateField(blank=True, null=True)
-    
-    def __str__(self):
-        return self.empresa
 
-class Academic(models.Model):
-    universidade = models.CharField(max_length=100)
-    curso = models.CharField(max_length=100)
-    periodo = models.CharField(max_length=100)
-    inicio_data = models.DateField()
-    fim_data = models.DateField()
-    
-    def __str__(self):
-        return self.universidade
+class ContactInformation(models.Model):
+    """
+    Model representing contact information.
+    """
+    phone_number = models.CharField(max_length=11)
+    address = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=8)
 
-class Skills(models.Model):
-    nome = models.CharField(max_length=100)
-    estudante_nome = models.ForeignKey(DadosPessoais, on_delete=models.CASCADE)
-    
     def __str__(self):
-        return self.estudante_nome.nome   
+        return self.phone_number
+
+
+class ProfessionalExperience(models.Model):
+    """
+    Model representing professional experience.
+    """
+    company = models.CharField(max_length=100)
+    job_title = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return self.company
+
+
+class AcademicBackground(models.Model):
+    """
+    Model representing academic background.
+    """
+    university = models.CharField(max_length=100)
+    course = models.CharField(max_length=100)
+    period = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return self.university
+
+
+class Skill(models.Model):
+    """
+    Model representing skills.
+    """
+    name = models.CharField(max_length=100)
+    student_name = models.ForeignKey(PersonalInformation, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.student_name.name
+
 
 class Resume(models.Model):
-    dados_pessoais = models.OneToOneField(DadosPessoais, on_delete=models.CASCADE)
-    contato = models.OneToOneField(Contato, on_delete=models.CASCADE)
-    experiencia = models.ManyToManyField(Experiencia)
-    formacao_academica = models.ManyToManyField(FormacaoAcademica)
-    habilidades = models.ManyToManyField(Habilidade)
-        
+    """
+    Model representing a resume.
+    """
+    personal_information = models.OneToOneField(PersonalInformation, on_delete=models.CASCADE)
+    contact_information = models.OneToOneField(ContactInformation, on_delete=models.CASCADE)
+    experiences = models.ManyToManyField(ProfessionalExperience)
+    academic_background = models.ManyToManyField(AcademicBackground)
+    skills = models.ManyToManyField(Skill)
+
     def __str__(self):
-        return self.dados_pessoais.nome
+        return self.personal_information.name
+
 
 class Candidate(models.Model):
-    dados_pessoais = models.OneToOneField('DadosPessoais', on_delete=models.CASCADE, related_name='candidato')
-    contato = models.OneToOneField('Contato', on_delete=models.CASCADE, related_name='candidato')
-    experiencias = models.ManyToManyField('Experiencia', related_name='candidatos')
-    formacoes_academicas = models.ManyToManyField('FormacaoAcademica', related_name='candidatos')
-    habilidades = models.ManyToManyField('Habilidade', related_name='candidatos')
-    
+    """
+    Model representing a candidate.
+    """
+    personal_information = models.OneToOneField(PersonalInformation, on_delete=models.CASCADE, related_name='candidate')
+    contact_information = models.OneToOneField(ContactInformation, on_delete=models.CASCADE, related_name='candidate')
+    experiences = models.ManyToManyField(ProfessionalExperience, related_name='candidates')
+    academic_background = models.ManyToManyField(AcademicBackground, related_name='candidates')
+    skills = models.ManyToManyField(Skill, related_name='candidates')
+
     def __str__(self):
-        return self.dados_pessoais.nome
+        return self.personal_information.name
