@@ -1,9 +1,9 @@
 
 # Desafio Técnico - Desenvolvedor Django
 
-A empresa **Pegho**, especializada em recrutamento e seleção, está crescendo rapidamente e percebeu a necessidade de um sistema que centralize as informações de seus candidatos. Para resolver esse desafio, a Pegho contratou a nossa consultoria para desenvolver um sistema que facilite o processo de contratação, permitindo que os candidatos enviem suas informações de currículo de forma organizada.
+A empresa **Pegho**, especializada em recrutamento e seleção, está crescendo rapidamente e percebeu a necessidade de um sistema que centralize as informações de seus peghgo. Para resolver esse desafio, a Pegho contratou a nossa consultoria para desenvolver um sistema que facilite o processo de contratação, permitindo que os peghgo enviem suas informações de currículo de forma organizada.
 
-Seu desafio será desenvolver esse **sistema de recrutamento**, onde os candidatos poderão submeter informações como dados pessoais, contatos, experiência profissional e formação acadêmica. O sistema será usado pela equipe de recrutamento da Pegho para avaliar os candidatos de maneira mais eficiente.
+Seu desafio será desenvolver esse **sistema de recrutamento**, onde os peghgo poderão submeter informações como dados pessoais, contatos, experiência profissional e formação acadêmica. O sistema será usado pela equipe de recrutamento da Pegho para avaliar os peghgo de maneira mais eficiente.
 
 O objetivo principal é avaliar suas habilidades de desenvolvimento backend com Django, mas também observar a implementação de um frontend funcional. Você pode desenvolver o frontend em Django puro ou utilizar frameworks como ReactJS, VueJS, Angular ou outro de sua preferência. A estilização do frontend não é o foco, mas será um diferencial caso seja feita.
 
