@@ -7,42 +7,37 @@ Seu desafio será desenvolver esse **sistema de recrutamento**, onde os peghgo p
 
 O objetivo principal é avaliar suas habilidades de desenvolvimento backend com Django, mas também observar a implementação de um frontend funcional. Você pode desenvolver o frontend em Django puro ou utilizar frameworks como ReactJS, VueJS, Angular ou outro de sua preferência. A estilização do frontend não é o foco, mas será um diferencial caso seja feita.
 
-## Requisitos:
-1. **Backend**:
-    - Implementar uma API ou interface em Django para gerenciar os currículos.
-    - Modelos de banco de dados para:
-        - Dados pessoais (nome, data de nascimento, etc.).
-        - Contato (email, telefone, endereço, etc.).
-        - Experiência profissional (cargo, empresa, período, descrição).
-        - Formação acadêmica (instituição, curso, período).
-    - CRUD completo para essas informações.
-    - Validações básicas dos dados (como formato de email, números de telefone, etc.).
-    - **Criação do Django Admin** para gerenciamento dos dados cadastrados.
+## Tecnologias Utilizadas:
+    - Frontend: React.js, Typescript, Vitest para testes de unidade, Playright para testes e2e e React Testing Library para testes de integração
+    - Backend: Python 3.12, Django, Django-admin, Django Rest Framework, Postgresql, Dokcer
+    - Cloud e DevOps: GCP, Github Actions CI(Continous delivery automation for backend and frontend run pipelines unit, integrations and e2e tests
 
-2. **Frontend**:
-    - Pode ser feito em Django com templates ou em algum framework JS (React, Vue, Angular, etc.).
-    - Deve permitir que o usuário preencha e envie o currículo.
-    - Não há necessidade de estilização complexa, apenas funcionalidade.
+## Requisitos para Executar
+    - Node= v18 & npm=v10
+    - Python=3.12 && Drf=
+    - Postgresql 17
+    - Docker
 
-3. **Extras (opcionais, mas valorizados)**:
-    - Utilizar Django Rest Framework (DRF) para criar uma API REST.
-    - Utilização de Docker para containerização da aplicação.
-    - Implementar uma autenticação simples para proteger o sistema.
-    - Estilização básica no frontend com Bootstrap, TailwindCSS ou qualquer outro framework CSS.
-
-4. **Diferenciais (não obrigatórios, mas valorizados)**:
-    - Implementação de **testes unitários** no backend.
-    - Implementação de **BDD (Behavior-Driven Development)** para o backend usando ferramentas como Behave ou Pytest-BDD.
-
-## Entrega:
-- Enviar o código em um repositório no GitHub ou outra plataforma de sua escolha através do e-mail: vagas@digitalsys.com.br
-- Incluir um arquivo README com as instruções de instalação e execução do projeto.
-- ** Prazo Final para recebimento dos desafios **: 31/10/2024
-
-## Tutoriais recomendados:
-- **Django**: [Django - Tutorial oficial](https://docs.djangoproject.com/en/stable/intro/tutorial01/)
-- **Django Rest Framework (DRF)**: [DRF - Tutorial oficial](https://www.django-rest-framework.org/tutorial/quickstart/)
-- **ReactJS**: [React - Documentação oficial](https://reactjs.org/tutorial/tutorial.html)
-- **VueJS**: [Vue.js - Guia oficial](https://vuejs.org/guide/essentials/application.html)
-- **Angular**: [Angular - Início rápido](https://angular.io/start)
-- **Docker**: [Docker - Documentação oficial](https://docs.docker.com/get-started/)
+## Como executar
+    # com docker:
+        git clone project
+        docker-compose up -d
+        1. Acessar
+            Frontend: http://www.localhost:3000/
+            Backend: http://www.localhost:8000/
+        2. Build com Docker
+            cd frontend/ && docker run build .
+            cd backend/ && docker run build .
+    1. Backend sem docker
+        git clone
+        cd backend
+        python -m venv venv
+        pip install -r requirements.txt
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver
+    2. Frontend
+        cd frontend
+        npm i && npm run dev
+        # simmplicar e otimizar para subir para prod, ai realiza o build
+        npm run build
